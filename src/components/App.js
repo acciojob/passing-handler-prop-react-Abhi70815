@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import '../styles/App.css';
+import '../styles/Child.css'
 import Selection from './Selection';
 import ColourSelector from './ColourSelector';
-
+ 
 const colourConfig = [{
     key: 'blue',
     label: 'Blue',
@@ -20,36 +21,35 @@ const colourConfig = [{
     background: 'rgb(44, 209, 88)'
   }
 ]
-
+ 
 const title = 'Select the gradient and then the Box to change the color';
-
+ 
 const App = () => {
   let [nextBackground, selectNextBackground] = useState({ background: "" })
-  const applyColor = (setColor) => {
-    setColor(nextBackground.background);
+  const applyColor = (updateSelectionStyle) => {
+    updateSelectionStyle(nextBackground)
   }
-
-
+ 
   return (
-    <div id="master" style={{textAlign:"center"}}>
-      <h5 className="heading">{/* display title here */}</h5>
-
-      <div className="row" >
+    <div id="master">
+      <h5 className="heading">{title}</h5>
+ 
+      <div className="row">
         {colourConfig.map((config, index) => (
           <ColourSelector key={config.key} config={config} selectNextBackground={selectNextBackground} />
         ))}
       </div>
-
-      <div className='row' id="children-wrapper" style={{display:"flex", gap:"10px", justifyContent:"center"}}>
+ 
+      <div className='row' id="children-wrapper">
         {
-          ["selection1", "selection2", "selection3"].map((key,ind) => (
-            <Selection keys={key} applyColor={applyColor} config={colourConfig[ind].label} />
+          ["selection1", "selection2", "selection3"].map(key => (
+            <Selection key={key} applyColor={applyColor} />
           ))
         }
       </div>
     </div >
   )
 }
-
-
+ 
+ 
 export default App;
