@@ -9,7 +9,7 @@ const ColourSelector = (props) => {
   // let x=config;
   console.log(config.key)
   return (
-    <button style={{backgroundColor:background}} className={classname} onClick={() => selectNextBackground({background: background})}>
+    <button style={{backgroundColor:background}} className={classname} onClick={() => selectNextBackground({background: background})}data-testid={props.config.label}>
       {config.label}
     </button>
   )
