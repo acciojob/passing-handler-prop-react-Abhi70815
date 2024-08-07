@@ -42,8 +42,8 @@ const App = () => {
 
       <div className='row' id="children-wrapper" style={{display:"flex", gap:"10px", justifyContent:"center"}}>
         {
-          ["selection1", "selection2", "selection3"].map(key => (
-            <Selection keys={key} applyColor={applyColor}  />
+          ["selection1", "selection2", "selection3"].map((key,ind) => (
+            <Selection keys={key} applyColor={applyColor} config={colourConfig[ind].label} />
           ))
         }
       </div>
